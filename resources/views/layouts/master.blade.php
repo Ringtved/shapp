@@ -80,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-cog text-green"></i>
+                                <i class="fas fa-cog nav-icon text-green"></i>
                                 <p>
                                     Management
                                     <i class="right fa fa-angle-left"></i>
@@ -112,6 +112,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
+                                
                             </form>
                         </li>
                     </ul>
