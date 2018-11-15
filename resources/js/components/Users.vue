@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="card mt-5">
             <div class="card-header">
-                <h3 class="card-title">User table</h3>
+                <h3 class="card-title">User DataBase -Table</h3>
                 <div class="card-tools">
                     <button class="btn btn-success" data-toggle="modal" data-target="#usermodel">Add new <i class="fas fa-user-plus fa-fw"></i></button>
                 </div>
@@ -27,8 +27,8 @@
                                     <td>{{user.id}}</td>
                                     <td>{{user.name}}</td>
                                     <td>{{user.email}}</td>
-                                    <td>{{user.type}}</td>
-                                    <td>{{user.created_at}}</td>
+                                    <td>{{user.type | upText}}</td>
+                                    <td>{{user.created_at | simpleDate}}</td>
                                     <td>
                                         <a href="#" class="btn btn-primary">
                                             Edit <i class="fas fa-user-edit"></i>
@@ -64,7 +64,7 @@
                                 <has-error :form="form" field="email"></has-error>
                             </div>
                             <div class="form-group">
-                                <textarea v-model="form.bio" name="bio" placeholder="Short bri for user (Optional)" class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
+                                <textarea v-model="form.bio" name="bio" placeholder="Short bio for user (Optional)" class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
                                 <has-error :form="form" field="bio"></has-error>
                             </div>
                             <div class="form-group">
@@ -112,7 +112,9 @@
                 axios.get("api/user").then(({ data }) => (this.users = data.data));
             },
             createUser() {
+                this.$Progress.start();
                 this.form.post('api/user');
+                this.$Progress.finish();
             }
         },
         created() {
